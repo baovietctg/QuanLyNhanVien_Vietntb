@@ -70,7 +70,28 @@ function themNhanVien() {
      */
     var isValid = true;
     // Kiểm tra tài khoản Nhân viên
-    isValid &= validation.checkEmpty(taiKhoanNV, "tbTKNV","Tài khoản nhân viên không được để trống") && validation.checkTKNV(taiKhoanNV,"tbTKNV","Tài khoản nhân viên không được trùng",dsnv.mangNV);
+    isValid &= validation.checkEmpty(taiKhoanNV, "tbTKNV","Tài khoản nhân viên không được để trống") && validation.checkTKNV(taiKhoanNV,"tbTKNV","Tài khoản nhân viên không được trùng",dsnv.mangNV) && validation.checkValTKNV(taiKhoanNV,"tbTKNV","Tài khoản nhân viên không hợp lệ (TKNV phải từ 4-6 ký tự");
+
+    //Kiểm tra họ và tên
+    isValid &= validation.checkEmpty(tenNV, "tbTen","Tên nhân viên không được để trống") && validation.checkName(tenNV,"tbTen","Tên nhân viên không hợp lệ");
+
+    //Kiểm tra email
+    isValid &= validation.checkEmpty(email, "tbEmail","Email không được để trống") && validation.checkEmail(email,"tbEmail","Email không hợp lệ");
+
+    //Kiểm tra mật khẩu
+    isValid &= validation.checkEmpty(password,"tbMatKhau","Mật khẩu không được để trống") && validation.checkPassword(password,"tbMatKhau","Mật khẩu không hợp lệ")
+
+    //Kiểm tra ngày làm
+    isValid &= validation.checkEmpty(ngayLam,"tbNgay","Ngày làm không được để trống") && validation.checkNgayLam(ngayLam,"tbNgay","Ngày làm không hợp lệ")
+
+    //Kiểm tra lương cơ bản
+    isValid &= validation.checkEmpty(luongCB,"tbLuongCB","Lương cơ bản không được để trống") && validation.checkLuongCB(luongCB,"tbLuongCB","Lương cơ bản không hợp lệ (Lương cơ bản từ 1tr-20tr)")
+
+    //Kiểm tra chức vụ
+    isValid &= validation.checkDropdown("chucvu", "tbChucVu", "Chức vụ chưa được chọn");
+
+    //Kiểm tra giờ làm
+    isValid &= validation.checkEmpty(gioLam,"tbGiolam","Giờ làm không được để trống") && validation.checkGioLam(gioLam,"tbGiolam","Giờ làm không hợp lệ (giờ làm từ 20 đến 200 giờ)")
 
         if(isValid){
     //Tất cả dữ liệu hợp lệ
@@ -293,5 +314,19 @@ getELE("btnTimNV").onclick = timKiemTheoXepLoai;
 //onkeypress (khi người dùng đè phím), onkeydown (khi người dùng mới nhấn phím), onkeyup (khi người dùng nhấc ngón tay khỏi phím)
 //=> chỉ nên dùng khi dữ liệu tìm kiếm ít
 getELE("searchName").onkeyup = timKiemTheoXepLoai;
+
+
+//function kiểm tra upper_case
+// function upper_case(str) 
+// { 
+//  regexp = /^[A-Z]/;
+//  if (regexp.test(str)) { 
+//  console.log("String's first character is uppercase"); 
+//  } else { 
+//  console.log("String's first character is not uppercase"); 
+//  } 
+// } 
+// upper_case('Abcd'); 
+// upper_case('abcd');
 
 
